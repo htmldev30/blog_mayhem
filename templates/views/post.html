@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title%} Post {% endblock %}
+{% block content %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('static/img/Post_Page.jpg')">
+   <div class="overlay"></div>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+               <h1>Man must explore, and this is exploration at its greatest</h1>
+               <h2 class="subheading">A hope to join an awesome galatic civilization</h2>
+               <span class="meta"><button class="btn btn-alert btn-send"> <a href="{{url_for('admin')}}"> Add Post </a></button></span>
+            </div>
+         </div>
+      </div>
+   </div>
+</header>
+<!-- Post Content -->
+<center>
+
+   <h4> <a href="{{url_for('admin')}}"> {% if not posts %} Say Something!!! {% endif %}</a></h4>
+            <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"> Categories
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <center>
+            <li><a href="/post/category/projects"> Projects </a></li>
+            <li><a href="/post/category/gamebuilds"> Game Builds </i></a></li>
+            <li><a href="/post/category/space"> Space </a></i>
+            <li><a href="/post/category/other"> Other </a></li>
+          </center>
+            </ul>
+            </div>
+</center>
+{% for i in posts %}
+<article>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-8 col-md-10 mx-auto">
+            <h2 class="section-heading">{{ i.header }}</h2>
+            <h4>{{i.subtitles}}</h4>
+            <p> {{i.content}} </p>
+         </div>
+                     <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Info
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+            <li><a> Posted at {{i.time_created}} </a></li>
+            <li><a> Category: <i>{{i.category}}</i></a></li>
+            <li>{% if i.updated %}<small><i>This post was updated</i></small>{% endif %}</li>
+            </ul>
+            </div>
+      </div>
+      <button class="btn btn-alert btn-send" disabled=""><a href = "/post/admin/delete/{{i.id}}"> Delete Post </a></button>
+      <button class="btn btn-alert btn-send" disabled=""><a href = "/post/update/{{i.id}}"> Update Post </a></button>
+   </div>
+</article>
+<hr>
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+
+
+
+{% block title %} Post Admin {%endblock%}
+{% block content %}
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-xl-8 offset-xl-2 py-5">
+
+                    <h1>Post Something New</h1>
+
+                    <p class="lead"> For the dawn of mankind, it is in our nature to share, communicate, enjoy.</p>
+                    <p class="lead">Let us post</p>
+
+
+                    <form id="contact-form" method="post" role="form" action="/post/admin">
+
+                        <div class="messages"></div>
+
+                        <div class="controls">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="form_name">Heading *</label>
+                                        <input id="form_name" type="text" name="header" class="form-control" placeholder="Please enter a header *" required="required" data-error="Firstname is required.">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="form_lastname">Subtitles *</label>
+                                        <input id="form_lastname" type="text" name="subtitles" class="form-control" placeholder="Please enter subtitles *" required="required" data-error="Lastname is required.">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+  
+                                <select id="form_need" name="category" class="form-control" required="required" data-error="Please specify your need.">
+                                        <option value=""></option>
+                                        <option value="Projects">Projects</option>
+                                        <option value="Game Builds">Game Builds</option>
+                                        <option value="Space">Space</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="form_message">Message *</label>
+                                        <textarea id="form_message" name="content" class="form-control" placeholder="Content of post *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+
+                                    <input type="submit" class="btn btn-success btn-send" value="Post">
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                    </form>
+                   
+                </div><!-- /.8 -->
+
+            </div> <!-- /.row-->
+
+        
+
+        </div> <!-- /.container-->
+
+
+{% endblock %}

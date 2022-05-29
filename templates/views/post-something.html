@@ -1,22 +1,17 @@
-{% extends "base.html" %} {% block title %} Update Posts {% endblock %} {% block
+{% extends "base.html" %} {% block title %} Post Something {%endblock%} {% block
 content %}
-
 <div class="container">
   <div class="row">
     <div class="col-xl-8 offset-xl-2 py-5">
-      <h1>Update Something</h1>
+      <h1>Post Something New</h1>
 
       <p class="lead">
         For the dawn of mankind, it is in our nature to share, communicate,
         enjoy.
       </p>
       <p class="lead">Let us post</p>
-      <form
-        id="contact-form"
-        method="post"
-        role="form"
-        action="/post/admin/update/{{posts.id}}"
-      >
+
+      <form id="contact-form" method="post" role="form" action="/post/admin">
         <div class="messages"></div>
 
         <div class="controls">
@@ -32,7 +27,6 @@ content %}
                   placeholder="Please enter a header *"
                   required="required"
                   data-error="Firstname is required."
-                  value="{{posts.header}}"
                 />
                 <div class="help-block with-errors"></div>
               </div>
@@ -48,7 +42,6 @@ content %}
                   placeholder="Please enter subtitles *"
                   required="required"
                   data-error="Lastname is required."
-                  value="{{posts.subtitles}}"
                 />
                 <div class="help-block with-errors"></div>
               </div>
@@ -80,19 +73,15 @@ content %}
                   rows="4"
                   required="required"
                   data-error="Please, leave us a message."
-                  value=""
-                >
-{{posts.content}}</textarea
-                >
+                ></textarea>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
             <div class="col-md-12">
               <input
-                href="/post/admin/update/{{posts.id}}"
                 type="submit"
                 class="btn btn-success btn-send"
-                value="Update"
+                value="Post"
               />
             </div>
           </div>

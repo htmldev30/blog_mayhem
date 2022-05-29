@@ -1,6 +1,0 @@
-These are the requirements for this website
-
-pip install flask
-
-pip install flask_sqlalchemy
-

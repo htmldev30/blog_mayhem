@@ -1,17 +1,21 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
 app = Flask(__name__)
 
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Posts.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = f'postgresql://xhvmkrpm:{os.getenv("SQL_ACESS")}@castor.db.elephantsql.com/xhvmkrpm'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
 db = SQLAlchemy(app)
 
 class Posts(db.Model):
+	__tablename__='posts'
 	id = db.Column(db.Integer, primary_key=True)
 	header = db.Column(db.String(20))
 	subtitles = db.Column(db.String(500))
@@ -26,7 +30,8 @@ db.create_all()
 # Basic Routing Area
 @app.route("/")
 def home():
-	return render_template("views/index.html")
+	posts = Posts.query.all()
+	return render_template("views/index.html", posts=posts)
 
 @app.route("/contact")
 def contact():
@@ -40,7 +45,6 @@ def about():
 @app.route("/post")
 def post():
 	posts = Posts.query.all()
-
 	return render_template("views/post.html", posts=posts)
 
 @app.route("/post/update/<int:posts_id>", methods=["POST", "GET"])
@@ -50,9 +54,9 @@ def post_update(posts_id):
 	return render_template("views/update.html", posts=posts)
 
 
-@app.route("/admin")
+@app.route("/post-something")
 def admin():
-	return render_template("views/post-admin.html")
+	return render_template("views/post-something.html")
 
 # End Routing
 
@@ -88,7 +92,7 @@ def category_other():
 
 	return render_template("views/post.html", posts=posts)
 
-#Data Hanlding Area
+#Data Handling Area
 @app.route("/post/admin", methods=["POST"])
 def post_admin():
 	header = request.form["header"]

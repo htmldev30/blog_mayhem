@@ -241,6 +241,46 @@
         >Free Privacy Policy Generator website</a
       ></noscript
     >
+    <script>
+      // THIS PIECE OF CODE IS FROM Chris HG - https://stackoverflow.com/users/1916816/chris-hg
+      var createCookie = function (name, value, days) {
+        var expires;
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = "; expires=" + date.toGMTString();
+        } else {
+          expires = "";
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+      };
+
+      function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+          c_start = document.cookie.indexOf(c_name + "=");
+          if (c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) {
+              c_end = document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start, c_end));
+          }
+        }
+        return "";
+      }
+      function TOS() {
+        var cookieName = "hasVisitedBefore";
+        var cookie = getCookie(cookieName);
+        if (!cookie) {
+          alert(
+            "By visiting this page, you agree to its Terms of Service. You may visit the Terms of Service at - https://blog-mayhem.herokuapp.com/terms-of-service"
+          );
+          createCookie(cookieName, true, 3650);
+        }
+      }
+      TOS();
+    </script>
     <!-- End Cookie Consent -->
   </body>
 </html>

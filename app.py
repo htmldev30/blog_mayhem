@@ -17,10 +17,10 @@ db = SQLAlchemy(app)
 class Posts(db.Model):
 	__tablename__='posts'
 	id = db.Column(db.Integer, primary_key=True)
-	header = db.Column(db.String(50))
+	header = db.Column(db.String(100))
 	subtitles = db.Column(db.String(500))
 	category = db.Column(db.String(25))
-	content = db.Column(db.String(1000))
+	content = db.Column(db.String(3000))
 	time_created = db.Column(db.String(1000))
 	updated = db.Column(db.Boolean, default=False)
 
@@ -31,7 +31,8 @@ db.create_all()
 @app.route("/")
 def home():
 	posts = Posts.query.all()
-	return render_template("views/index.html", posts=posts)
+	ordered_posts = posts[::-1]
+	return render_template("views/index.html", posts=ordered_posts)
 
 @app.route("/contact")
 def contact():
@@ -45,12 +46,12 @@ def about():
 @app.route("/post")
 def post():
 	posts = Posts.query.all()
-	return render_template("views/post.html", posts=posts)
+	ordered_posts = posts[::-1]
+	return render_template("views/post.html", posts=ordered_posts)
 
 @app.route("/post/update/<int:posts_id>", methods=["POST", "GET"])
 def post_update(posts_id):
 	posts = Posts.query.get(posts_id)
-
 	return render_template("views/update.html", posts=posts)
 
 

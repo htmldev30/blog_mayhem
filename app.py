@@ -59,7 +59,7 @@ def admin():
 	return render_template("views/post-something.html")
 
 @app.route("/privacy-policy")
-def prviacy_policy():
+def privacy_policy():
 	return render_template("views/privacy-policy.html")
 
 @app.route("/terms-of-service")

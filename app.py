@@ -17,11 +17,11 @@ db = SQLAlchemy(app)
 class Posts(db.Model):
 	__tablename__='posts'
 	id = db.Column(db.Integer, primary_key=True)
-	header = db.Column(db.String(20))
+	header = db.Column(db.String(50))
 	subtitles = db.Column(db.String(500))
 	category = db.Column(db.String(25))
 	content = db.Column(db.String(1000))
-	time_created = db.Column(db.String(100))
+	time_created = db.Column(db.String(1000))
 	updated = db.Column(db.Boolean, default=False)
 
 db.create_all()

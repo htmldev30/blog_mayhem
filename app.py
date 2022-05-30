@@ -58,6 +58,14 @@ def post_update(posts_id):
 def admin():
 	return render_template("views/post-something.html")
 
+@app.route("/privacy-policy")
+def contact():
+	return render_template("views/privacy-policy.html")
+
+@app.route("/terms-of-service")
+def contact():
+	return render_template("views/tos.html")
+
 # End Routing
 
 # Data Categorizing Routing 
